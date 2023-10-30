@@ -1,0 +1,37 @@
+-- Crea la base de datos
+CREATE DATABASE repaso;
+
+-- Usa la base de datos recién creada
+USE repaso;
+
+-- Crea la tabla 'estudiantes'
+CREATE TABLE estudiantes (
+    cedula INT PRIMARY KEY,
+    nombre_est VARCHAR(50),
+    apellido_est VARCHAR(50)
+);
+
+-- Crea la tabla 'cursos'
+CREATE TABLE cursos (
+    id INT PRIMARY KEY,
+    nombre_curso VARCHAR(50)
+);
+
+-- Crea la tabla 'materias'
+CREATE TABLE materias (
+    id_mat INT PRIMARY KEY,
+    nombre_mat VARCHAR(50)
+);
+
+-- Crea la tabla 'maestro' para almacenar notas
+CREATE TABLE maestro (
+    id_maestro INT AUTO_INCREMENT PRIMARY KEY,
+    curso INT,
+    estudiante INT,
+    nota DECIMAL(5, 2),
+    parcial INT,
+    materia INT,
+    FOREIGN KEY (curso) REFERENCES cursos(id),
+    FOREIGN KEY (estudiante) REFERENCES estudiantes(cedula),
+    FOREIGN KEY (materia) REFERENCES materias(id_mat)
+);
